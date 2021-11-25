@@ -1,0 +1,387 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>Booking App</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md">
+      <div class="container-fluid p-3">
+        <a href="#" class="navbar-brand abs logo-text text-white">
+          <h3>Booking App</h3>
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseNavbar"><i class="fas fa-bars text-white"></i></button>
+        <div class="navbar-collapse collapse" id="collapseNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="userPanelNavMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{user.full_name}}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userPanelNavMenu">
+                <li><h6 class="dropdown-header">{{user.email}}</h6></li>
+                <li><a class="dropdown-item" href="logout">Logout</a></li>
+              </ul>
+            
+              <!-- <h5 class="text-white">
+              <a class="text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{user.full_name}}
+              </a>
+            </h5>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <h6 class="dropdown-header"><small class="text-white text-end">{{user.email}}</small></h6>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div> -->
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid user-header mt-5"></div>
+  </header>
+
+  <div class="container my-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-8">
+        <ul class="nav nav-pills mb-3 d-flex justify-content-center " id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+              type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+              type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-billing-tab" data-bs-toggle="pill" data-bs-target="#pills-billing"
+              type="button" role="tab" aria-controls="pills-billing" aria-selected="false">Billing</button>
+          </li>
+
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+              <div class="row mt-4">
+                <div class="col m-2">
+                  <div class="card text-white bg-primary mb-3 h-100">
+                    <div class="card-header">Bookings</div>
+                    <div class="card-body">
+                      <h2 class="card-title">{{total_bookings}}</h2>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                      <div class="row d-flex justify-content-center">
+                        <div class="col">
+                          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">+ Book Room</button>
+                        </div>
+                        <div class="col">
+                          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Check Bookings</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col m-2">
+                  <div class="card text-white bg-warning mb-3 h-100">
+                    <div class="card-header">Pending</div>
+                    <div class="card-body">
+                      <h2 class="card-title">{{pending_bookings}}</h2>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col m-2">
+                  <div class="card text-white bg-success mb-3">
+                    <div class="card-header">History</div>
+                    <div class="card-body">
+                      <h2 class="card-title">5</h2>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <div class="row my-5">
+                <div class="col">
+                  <form action="/update-user" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="full_name" name="full_name" value="{{user.full_name}}" placeholder="Name">
+                        <label for="full_name">Name</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="tel" class="form-control" id="phone_no" name="phone_no" value="{{user.phone_no}}" placeholder="Phone">
+                        <label for="phone_no">Phone</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="address" name="address" value="{{user.profile.address}}" placeholder="1234 Main St">
+                        <label for="address">Address</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="address2" name="address2" value="{{user.profile.address2}}"
+                          placeholder="Apartment, studio, or floor">
+                        <label for="address2">Address 2</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="city" name="city" value="{{user.profile.city}}" placeholder="City">
+                        <label for="city">City</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="state" name="state" value="{{user.profile.state}}" placeholder="State">
+                        <label for="state">State</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="zip" name="zip" value="{{user.profile.zip}}" placeholder="Zip">
+                        <label for="zip">Zip</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary mx-auto">Update</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="pills-billing" role="tabpanel" aria-labelledby="pills-billing-tab">
+              <div class="row my-5">
+                <div class="col">
+                  <form action="/update-billing" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="card_holder_name" name="card_holder_name" value="{{user.profile.card_holder_name}}" placeholder="Account Title">
+                        <label for="card_holder_name">Card Holder's Name</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="number" class="form-control" id="card_number" name="card_number" value="{{user.profile.card_number}}" placeholder="Card Number">
+                        <label for="card_number">Card Number</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating ">
+                        <input type="number" class="form-control" id="cvv" name="cvv" value="{{user.profile.cvv}}" placeholder="CVV">
+                        <label for="cvv">CVV</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="date" class="form-control" id="card_expiry" name="card_expiry" value="{{user.profile.card_expiry}}" placeholder="Expiry Date">
+                        <label for="card_expiry">Expiry Date</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="billing_address" name="billing_address" value="{{user.profile.billing_address}}" placeholder="Billing Address">
+                        <label for="billing_address">Billing Address</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="billing_address2" name="billing_address2" value="{{user.profile.billing_address2}}" placeholder="Billing Address 2">
+                        <label for="billing_address2">Billing Address 2</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="billing_city" name="billing_city" value="{{user.profile.billing_city}}" placeholder="City">
+                        <label for="billing_city">City</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="billing_state" name="billing_state" value="{{user.profile.billing_state}}" placeholder="State">
+                        <label for="billing_state">State</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="billing_zip" name="billing_zip" value="{{user.profile.zip}}" placeholder="Zip">
+                        <label for="billing_zip">Zip</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary ms-auto">Update</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Book a room</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row my-3">
+              <div class="col" id="roomStatus"></div>
+              <div class="col">
+                <h3 class="text-center" id="roomType"></h3>
+              </div>
+              <div class="col">
+                <h3 class="text-center" id="roomPrice"></h3>
+              </div>
+              <div class="col-12">
+                <p class="small" id="roomDescription"></p>
+              </div>
+            </div>
+            <form action="/booking-form" method="POST">
+              {% csrf_token %}
+              <div class="row my-3">
+                <div class="col-12">
+                    <label for="selectRooms">Select Room</label>
+                    <select id="selectRooms" required id="room" name="room" class="form-select" onchange="roomSelect()">
+                      <option value="0" selected>Select a Room</option>
+                      {% for room in rooms %}
+                      <option value='{{room.id}}'>
+                        {{room.title}} ({{room.get_room_cat}})
+                      </option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <h6 class="mt-3">Booking Date</h6>
+                <div class="col-md-6">
+                  <div class="form-floating ">
+                    <input type="date" class="form-control" required id="inputStartDate" name="inputStartDate" placeholder="From">
+                    <label for="inputStartDate">From</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" required id="inputEndDate" name="inputEndDate" placeholder="To">
+                    <label for="inputEndDate">To</label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Book Room</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">All your bookings</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive-md">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">STATUS</th>
+                    <th scope="col">ROOM</th>
+                    <th scope="col">BOOKED FROM</th>
+                    <th scope="col">BOOKED TO</th>
+                    <th scope="col">DAYS</th>
+                    <th scope="col">ADDED ON</th>
+                    <th scope="col">UPDATED ON</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for booking in bookings %}
+                  <tr>
+                    <th scope="row">{{booking.id}}</th>
+                    <td>{{booking.get_booking_status}}</td>
+                    <td>{{booking.room.title}}</td>
+                    <td>{{booking.booked_from}}</td>
+                    <td>{{booking.booked_to}}</td>
+                    <td>{{booking.booked_for_days}}</td>
+                    <td>{{booking.added_on}}</td>
+                    <td>{{booking.updated_on}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container-fluid  myfooter">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4">
+        <ul class=" nav col-4 justify-content-start">
+          <li class="nav-item p-1"><i class="fab fa-2x fa-instagram"></i></li>
+          <li class="nav-item p-1"><i class="fab fa-2x fa-facebook"></i></li>
+          <li class="nav-item p-1"><i class="fab fa-2x fa-twitter"></i></li>
+        </ul>
+        <p class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none text-white">&copy; 2021 Booking App</p>
+
+
+        <!-- <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        </a> -->
+
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="/aboutus" class="nav-link px-2 text-white"> About Us</a></li>
+          <li class="nav-item"><a href="/contact" class="nav-link px-2 text-white">Contact</a></li>
+          <li class="nav-item"><a href="/privacy" class="nav-link px-2 text-white">Privacy Policy</a></li>
+          <li class="nav-item"><a href="/terms" class="nav-link px-2 text-white">Terms &amp; Conditions</a></li>
+        </ul>
+      </footer>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/userpanel.js' %}"></script>
+</body>
+
+</html>

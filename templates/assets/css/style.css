@@ -1,0 +1,96 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    height: 100% !important;
+}
+.rounded {
+    border-radius: 18px !important; 
+}
+.logo-text {
+    text-decoration: none;
+    font-family: 'Pacifico';
+}
+.logo-text h3 {
+    font-size: 40px;
+}
+.navbar {
+    background-color: rgb(161, 75, 4);
+}
+@media (min-width: 768px) {
+    .navbar-brand.abs {
+        position: absolute;
+        width: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.custom_row {
+    background-color: rgba(27, 27, 27, 0.747);
+    border-radius: 25px;
+    opacity: 0.73;
+    box-shadow: 10px 10px 20px grey;
+    background: url("http://source.unsplash.com/1500x1080/?sunset");
+}
+.login img {
+    max-width: 100%;
+    max-height: 100%;
+    border-top-left-radius: 30x;
+    border-bottom-left-radius: 30px;
+}
+.login h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: 'Pacifico', cursive;
+}
+.inp {
+    height: 50px;
+    width: 40%;
+    border: none;
+    outline: none;
+    border-radius: 60px;
+    -webkit-box-shadow: 16px 12px 20px 0px rgba(0,0,0,0.84); 
+    box-shadow: 16px 12px 20px 0px rgba(0,0,0,0.84);
+}
+.btnLogin {
+    height: 50px;
+    width: 25%;
+    border: none;
+    outline: none;
+    border-radius: 60px;
+    font-weight: 600;
+    background: rgba(224, 25, 11, 0.74);
+}
+.btnLogin:hover {
+    background: brown;
+    transition: 0.5s;
+}
+p {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.user-header {
+    background-image: url('https://source.unsplash.com/1920x600/?Hotels');
+    background-position: center;
+    border-radius: 15px;
+    background-repeat: no-repeat;
+    height: 350px;
+    width: 98%;
+}
+.myfooter {
+    background: black;
+    width: 100%;
+}
+
+.myfooter .nav-item a{
+    color: white;
+}
+
+.user-name-sec{
+    cursor: pointer;
+}
